@@ -194,7 +194,7 @@ public class Notizblock {
 	@Path("notiz/{benutzername}/{passwort}/{nummer}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response gelesenNotiz(@PathParam("benutzername") String benutzername,
-			@PathParam("passwort") String passwort, Integer nummer) {
+			@PathParam("passwort") String passwort, @PathParam("nummer") Integer nummer) {
 		Notiz note = nintern.setGelesenNotiz(benutzername, passwort, nummer);
 		if (note == null)
 			return Response
@@ -211,9 +211,9 @@ public class Notizblock {
 	
 	@DELETE
 	@Path("notiz/{benutzername}/{passwort}/{nummer}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response deleteNotiz(@PathParam("benutzername") String benutzername,
-			@PathParam("passwort") String passwort, Integer nummer) {
+			@PathParam("passwort") String passwort, @PathParam("nummer")Integer nummer) {
 		Notiz note = nintern.loeschenNotiz(benutzername, passwort, nummer);
 		if (note == null)
 			return Response
